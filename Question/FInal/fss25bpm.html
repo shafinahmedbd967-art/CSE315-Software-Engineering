@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BPMN Diagrams — 3 Cases</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  .page-title {
+    text-align: center;
+    padding: 28px 20px 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: 0.5px;
+  }
+  .page-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    padding: 0 16px;
+  }
+  .tab {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 2px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    color: #555;
+  }
+  .tab.active { background: #1a1a2e; color: white; border-color: #1a1a2e; }
+  .tab:hover:not(.active) { border-color: #1a1a2e; color: #1a1a2e; }
+
+  .diagram-container { display: none; padding: 0 16px 40px; }
+  .diagram-container.active { display: block; }
+
+  /* BPMN SVG styles */
+  .bpmn-wrap {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    overflow-x: auto;
+    padding: 16px;
+  }
+  .bpmn-wrap svg { display: block; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+    background: white;
+    border-radius: 10px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; }
+
+  /* shared BPMN element styles (inline in SVGs) */
+</style>
+</head>
+<body>
+
+<div class="page-title">BPMN Diagrams — Previous Year Questions</div>
+<div class="page-subtitle">DIU · CSE333 Software Engineering · Fall, Spring & Summer 2025</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="show(0)">Fall 2025 — COVID-19</div>
+  <div class="tab" onclick="show(1)">Spring 2025 — AECMS</div>
+  <div class="tab" onclick="show(2)">Summer 2025 — SHAS</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- DIAGRAM 1: COVID-19 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="diagram-container active" id="d0">
+<div class="bpmn-wrap">
+<svg width="1100" height="820" viewBox="0 0 1100 820" style="min-width:900px">
+<defs>
+  <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+  <marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+  <marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+</defs>
+
+<!-- Pool border -->
+<rect x="5" y="5" width="1090" height="810" rx="8" fill="none" stroke="#334155" stroke-width="2"/>
+<rect x="5" y="5" width="44" height="810" rx="8" fill="#1e293b"/>
+<text x="27" y="410" text-anchor="middle" transform="rotate(-90,27,410)" font-size="12" font-weight="bold" fill="white" font-family="Segoe UI">COVID-19 Vaccination & Testing Process</text>
+
+<!-- LANE 1: CITIZEN -->
+<rect x="49" y="5" width="1046" height="195" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="5" width="46" height="195" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="102" text-anchor="middle" transform="rotate(-90,72,102)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Citizen</text>
+
+<!-- START -->
+<circle cx="130" cy="102" r="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="130" y="130" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Request</text>
+<line x1="146" y1="102" x2="175" y2="102" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Submit NID -->
+<rect x="175" y="74" width="100" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="225" y="97" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Submit NID</text>
+<text x="225" y="113" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">&amp; info</text>
+<line x1="275" y1="102" x2="308" y2="102" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- GW1: Choose -->
+<polygon points="328,82 350,102 328,122 306,102" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="328" y="106" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="328" y="136" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Choose?</text>
+
+<!-- YES Vaccine path -->
+<line x1="350" y1="102" x2="400" y2="102" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="375" y="95" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">Vaccine</text>
+
+<!-- TASK: Select vacc center -->
+<rect x="400" y="74" width="110" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="455" y="97" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Select Vacc.</text>
+<text x="455" y="113" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Center</text>
+
+<!-- MSG SEND appt -->
+<circle cx="545" cy="102" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="545" cy="102" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="539" y="97" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="539" y1="97" x2="545" y2="102" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="551" y1="97" x2="545" y2="102" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="510" y1="102" x2="531" y2="102" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="545" y="128" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Book Appt.</text>
+
+<!-- Test path from GW1 down -->
+<path d="M328 122 L328 168 L700 168" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="510" y="162" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Test</text>
+
+<!-- TASK: Select test center -->
+<rect x="700" y="140" width="110" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="755" y="163" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Select Test</text>
+<text x="755" y="179" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Center</text>
+
+<!-- MSG SEND test -->
+<circle cx="845" cy="168" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="845" cy="168" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="839" y="163" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="839" y1="163" x2="845" y2="168" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="851" y1="163" x2="845" y2="168" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="810" y1="168" x2="831" y2="168" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="845" y="194" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Book Test</text>
+
+<!-- LANE 2: VACCINATION CENTER -->
+<rect x="49" y="200" width="1046" height="190" fill="#fafafa" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="200" width="46" height="190" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="295" text-anchor="middle" transform="rotate(-90,72,295)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Vaccination Center</text>
+
+<!-- MSG FLOW: Citizen → VaccCenter -->
+<line x1="545" y1="116" x2="545" y2="228" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#am)"/>
+<circle cx="545" cy="116" r="4" fill="#2563eb"/>
+<circle cx="545" cy="228" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE -->
+<circle cx="545" cy="244" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="545" cy="244" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="539" y="239" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="545" y="270" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Booking</text>
+<line x1="545" y1="258" x2="545" y2="276" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Verify eligibility -->
+<rect x="495" y="276" width="100" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="545" y="299" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Verify</text>
+<text x="545" y="315" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">Eligibility</text>
+<line x1="495" y1="304" x2="460" y2="304" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- GW2: Eligible? -->
+<polygon points="440,284 462,304 440,324 418,304" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="440" y="308" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="440" y="338" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Eligible?</text>
+
+<!-- YES → Schedule -->
+<line x1="418" y1="304" x2="370" y2="304" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="394" y="297" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">Yes</text>
+
+<!-- TASK: Schedule dose -->
+<rect x="260" y="276" width="108" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="314" y="299" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Schedule</text>
+<text x="314" y="315" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">Dose</text>
+<line x1="260" y1="304" x2="225" y2="304" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Administer vaccine -->
+<rect x="115" y="276" width="108" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="169" y="299" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Administer</text>
+<text x="169" y="315" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">Vaccine</text>
+
+<!-- MSG SEND dose record -->
+<circle cx="169" cy="360" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="169" cy="360" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="163" y="355" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="163" y1="355" x2="169" y2="360" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="175" y1="355" x2="169" y2="360" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="169" y1="332" x2="169" y2="346" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="169" y="386" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Dose Record</text>
+
+<!-- NO path -->
+<path d="M440 324 L440 375 L620 375" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ae)"/>
+<text x="530" y="368" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">Not Eligible</text>
+<circle cx="636" cy="375" r="13" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+<text x="636" y="400" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Rejected ❌</text>
+
+<!-- LANE 3: TESTING CENTER -->
+<rect x="49" y="390" width="1046" height="195" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="390" width="46" height="195" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="487" text-anchor="middle" transform="rotate(-90,72,487)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Testing Center</text>
+
+<!-- MSG FLOW: Citizen → TestCenter -->
+<line x1="845" y1="182" x2="845" y2="418" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#am)"/>
+<circle cx="845" cy="182" r="4" fill="#2563eb"/>
+<circle cx="845" cy="418" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE test -->
+<circle cx="845" cy="434" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="845" cy="434" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="839" y="429" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="845" y="460" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Test Req.</text>
+<line x1="845" y1="448" x2="845" y2="466" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Schedule test -->
+<rect x="795" y="466" width="100" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="845" y="489" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Schedule</text>
+<text x="845" y="505" text-anchor="middle" font-size="10" fill="#9a3412" font-family="Segoe UI">Test</text>
+<line x1="795" y1="494" x2="750" y2="494" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Conduct test -->
+<rect x="630" y="466" width="118" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="689" y="489" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Conduct</text>
+<text x="689" y="505" text-anchor="middle" font-size="10" fill="#9a3412" font-family="Segoe UI">COVID Test</text>
+<line x1="630" y1="494" x2="596" y2="494" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- GW3: Positive? -->
+<polygon points="576,474 598,494 576,514 554,494" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="576" y="498" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="576" y="528" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Result?</text>
+
+<!-- YES Positive → send to health auth -->
+<line x1="554" y1="494" x2="500" y2="494" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="527" y="487" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">Positive</text>
+
+<!-- MSG SEND positive result -->
+<circle cx="485" cy="494" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="485" cy="494" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="479" y="489" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="479" y1="489" x2="485" y2="494" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="491" y1="489" x2="485" y2="494" stroke="#2563eb" stroke-width="0.8"/>
+<text x="485" y="520" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Result</text>
+
+<!-- NO Negative → record -->
+<path d="M576 514 L576 560 L350 560" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="463" y="554" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">Negative</text>
+<rect x="240" y="532" width="108" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="294" y="555" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Record</text>
+<text x="294" y="571" text-anchor="middle" font-size="10" fill="#9a3412" font-family="Segoe UI">Result</text>
+<line x1="240" y1="560" x2="205" y2="560" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<circle cx="190" cy="560" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="190" y="585" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Recorded ✓</text>
+
+<!-- LANE 4: HEALTH AUTHORITY -->
+<rect x="49" y="585" width="1046" height="220" fill="#fafafa" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="585" width="46" height="220" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="695" text-anchor="middle" transform="rotate(-90,72,695)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Health Authority</text>
+
+<!-- MSG FLOW: VaccCenter → HealthAuth -->
+<line x1="169" y1="374" x2="169" y2="613" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#am)"/>
+<circle cx="169" cy="374" r="4" fill="#2563eb"/>
+<circle cx="169" cy="613" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG FLOW: TestCenter → HealthAuth -->
+<line x1="485" y1="508" x2="485" y2="613" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#am)"/>
+<circle cx="485" cy="508" r="4" fill="#2563eb"/>
+<circle cx="485" cy="613" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE dose record -->
+<circle cx="169" cy="629" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="169" cy="629" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="163" y="624" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="169" y="655" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Dose Rec.</text>
+<line x1="183" y1="629" x2="220" y2="629" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Update records -->
+<rect x="220" y="601" width="108" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="274" y="624" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Update Vacc.</text>
+<text x="274" y="640" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Records</text>
+<line x1="274" y1="657" x2="274" y2="690" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<circle cx="274" cy="703" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="274" y="728" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Records Updated ✓</text>
+
+<!-- MSG RECEIVE positive -->
+<circle cx="485" cy="629" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="485" cy="629" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="479" y="624" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="485" y="655" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive +ve Result</text>
+<line x1="499" y1="629" x2="540" y2="629" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- TASK: Review & assign -->
+<rect x="540" y="601" width="120" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="600" y="624" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Review &amp; Assign</text>
+<text x="600" y="640" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Quarantine</text>
+<line x1="660" y1="629" x2="695" y2="629" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+
+<!-- GW4: Quarantine? -->
+<polygon points="715,609 737,629 715,649 693,629" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="715" y="633" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="715" y="663" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Quarantine?</text>
+
+<!-- YES -->
+<line x1="737" y1="629" x2="790" y2="629" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="763" y="622" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">Yes</text>
+<rect x="790" y="601" width="108" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="844" y="624" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Assign to</text>
+<text x="844" y="640" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Quarantine</text>
+<line x1="844" y1="657" x2="844" y2="690" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<circle cx="844" cy="703" r="13" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+<text x="844" y="728" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Quarantined ❌</text>
+
+<!-- NO -->
+<path d="M715 649 L715 703 L600 703" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#a1)"/>
+<text x="658" y="696" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">No</text>
+<circle cx="586" cy="703" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="586" y="728" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Monitored ✓</text>
+
+</svg>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/></svg>Start Event</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="10" cy="10" r="5" fill="none" stroke="#2563eb" stroke-width="1"/></svg>Intermediate (Msg)</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/></svg>End (Success)</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/></svg>End (Error)</div>
+  <div class="legend-item"><svg width="20" height="20"><polygon points="10,2 18,10 10,18 2,10" fill="white" stroke="#f59e0b" stroke-width="2"/></svg>Gateway (XOR)</div>
+  <div class="legend-item"><svg width="30" height="20"><line x1="0" y1="10" x2="24" y2="10" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4 2"/><circle cx="0" cy="10" r="3" fill="#2563eb"/><circle cx="24" cy="10" r="3" fill="none" stroke="#2563eb" stroke-width="1.5"/></svg>Message Flow</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- DIAGRAM 2: AECMS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="diagram-container" id="d1">
+<div class="bpmn-wrap">
+<svg width="1000" height="720" viewBox="0 0 1000 720" style="min-width:850px">
+<defs>
+  <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+  <marker id="bm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+  <marker id="be" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+</defs>
+
+<!-- Pool -->
+<rect x="5" y="5" width="990" height="710" rx="8" fill="none" stroke="#334155" stroke-width="2"/>
+<rect x="5" y="5" width="44" height="710" rx="8" fill="#1e293b"/>
+<text x="27" y="360" text-anchor="middle" transform="rotate(-90,27,360)" font-size="12" font-weight="bold" fill="white" font-family="Segoe UI">AECMS — Emergency Alert Process</text>
+
+<!-- LANE 1: WEARABLE DEVICE -->
+<rect x="49" y="5" width="941" height="165" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="5" width="46" height="165" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="87" text-anchor="middle" transform="rotate(-90,72,87)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Wearable Device</text>
+
+<!-- START -->
+<circle cx="130" cy="87" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="130" y="113" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Collect Data</text>
+<line x1="145" y1="87" x2="175" y2="87" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- TASK: Monitor metrics -->
+<rect x="175" y="59" width="115" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="232" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Monitor Metrics</text>
+<text x="232" y="98" text-anchor="middle" font-size="9" fill="#1e40af" font-family="Segoe UI">HR, BP, O2, Steps</text>
+<line x1="290" y1="87" x2="325" y2="87" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- INTERMEDIATE TIMER -->
+<circle cx="342" cy="87" r="14" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<circle cx="342" cy="87" r="9" fill="none" stroke="#d97706" stroke-width="1"/>
+<line x1="342" y1="80" x2="342" y2="87" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="342" y1="87" x2="348" y2="91" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+<text x="342" y="113" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Continuous</text>
+<line x1="356" y1="87" x2="390" y2="87" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- MSG SEND health data -->
+<circle cx="407" cy="87" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="407" cy="87" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="401" y="82" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="401" y1="82" x2="407" y2="87" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="413" y1="82" x2="407" y2="87" stroke="#2563eb" stroke-width="0.8"/>
+<text x="407" y="113" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Data</text>
+
+<!-- LANE 2: AI SYSTEM -->
+<rect x="49" y="170" width="941" height="185" fill="#fafafa" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="170" width="46" height="185" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="262" text-anchor="middle" transform="rotate(-90,72,262)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">AI System</text>
+
+<!-- MSG FLOW: Device → AI -->
+<line x1="407" y1="101" x2="407" y2="198" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#bm)"/>
+<circle cx="407" cy="101" r="4" fill="#2563eb"/>
+<circle cx="407" cy="198" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE -->
+<circle cx="407" cy="214" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="407" cy="214" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="401" y="209" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="407" y="240" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Data</text>
+<line x1="407" y1="228" x2="407" y2="250" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- TASK: Analyze -->
+<rect x="355" y="250" width="104" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="407" y="273" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Analyze with</text>
+<text x="407" y="289" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">ML Model</text>
+<line x1="355" y1="278" x2="318" y2="278" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- GW: Anomaly? -->
+<polygon points="298,258 320,278 298,298 276,278" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="298" y="282" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="298" y="312" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Anomaly?</text>
+
+<!-- YES → classify -->
+<line x1="276" y1="278" x2="230" y2="278" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+<text x="253" y="271" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">Yes</text>
+<rect x="120" y="250" width="108" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="174" y="273" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Classify</text>
+<text x="174" y="289" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">Severity</text>
+
+<!-- GW2: Critical? -->
+<line x1="120" y1="278" x2="88" y2="278" stroke="#555" stroke-width="1.5"/>
+<line x1="95" y1="278" x2="95" y2="330" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- MSG SEND alert -->
+<circle cx="200" cy="340" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="200" cy="340" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="194" y="335" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="194" y1="335" x2="200" y2="340" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="206" y1="335" x2="200" y2="340" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="95" y1="330" x2="186" y2="340" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+<text x="200" y="366" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Alert</text>
+
+<!-- NO anomaly → log -->
+<path d="M298 298 L298 340 L500 340" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+<text x="400" y="334" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">No anomaly → Log normal</text>
+
+<!-- LANE 3: CAREGIVER -->
+<rect x="49" y="355" width="941" height="185" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="355" width="46" height="185" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="447" text-anchor="middle" transform="rotate(-90,72,447)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Caregiver</text>
+
+<!-- MSG FLOW: AI → Caregiver -->
+<line x1="200" y1="354" x2="200" y2="383" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#bm)"/>
+<circle cx="200" cy="354" r="4" fill="#2563eb"/>
+<circle cx="200" cy="383" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE -->
+<circle cx="200" cy="399" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="200" cy="399" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="194" y="394" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="200" y="425" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Alert</text>
+<line x1="214" y1="399" x2="250" y2="399" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- TASK: Review -->
+<rect x="250" y="371" width="108" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="304" y="394" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Review Health</text>
+<text x="304" y="410" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Metrics on App</text>
+<line x1="358" y1="399" x2="393" y2="399" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- GW: Emergency? -->
+<polygon points="413,379 435,399 413,419 391,399" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="413" y="403" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="413" y="433" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Emergency?</text>
+
+<!-- YES → activate -->
+<line x1="435" y1="399" x2="485" y2="399" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+<text x="460" y="392" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">Yes</text>
+<rect x="485" y="371" width="115" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="542" y="394" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Activate</text>
+<text x="542" y="410" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Emergency</text>
+
+<!-- MSG SEND emergency -->
+<circle cx="640" cy="399" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="640" cy="399" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="634" y="394" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="634" y1="394" x2="640" y2="399" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="646" y1="394" x2="640" y2="399" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="600" y1="399" x2="626" y2="399" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+<text x="640" y="425" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Call Emergency</text>
+
+<!-- NO → monitor -->
+<path d="M413 419 L413 490 L250 490" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+<text x="330" y="484" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">No</text>
+<circle cx="234" cy="490" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="234" y="515" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Monitoring ✓</text>
+
+<!-- LANE 4: EMERGENCY SERVICES -->
+<rect x="49" y="540" width="941" height="170" fill="#fafafa" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="540" width="46" height="170" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="625" text-anchor="middle" transform="rotate(-90,72,625)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Emergency Services</text>
+
+<!-- MSG FLOW: Caregiver → EmgServices -->
+<line x1="640" y1="413" x2="640" y2="568" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#bm)"/>
+<circle cx="640" cy="413" r="4" fill="#2563eb"/>
+<circle cx="640" cy="568" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE -->
+<circle cx="640" cy="584" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="640" cy="584" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="634" y="579" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="640" y="610" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Emergency Call</text>
+<line x1="626" y1="584" x2="580" y2="584" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- TASK: Dispatch -->
+<rect x="460" y="556" width="118" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="519" y="579" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Dispatch</text>
+<text x="519" y="595" text-anchor="middle" font-size="10" fill="#9a3412" font-family="Segoe UI">Response Team</text>
+<line x1="460" y1="584" x2="420" y2="584" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- TASK: Assist -->
+<rect x="300" y="556" width="118" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="359" y="579" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Provide</text>
+<text x="359" y="595" text-anchor="middle" font-size="10" fill="#9a3412" font-family="Segoe UI">Assistance</text>
+<line x1="300" y1="584" x2="260" y2="584" stroke="#555" stroke-width="1.5" marker-end="url(#b1)"/>
+
+<!-- END -->
+<circle cx="245" cy="584" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="245" y="610" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Resolved ✓</text>
+
+</svg>
+</div>
+<div class="legend">
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/></svg>Start Event</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><circle cx="10" cy="10" r="5" fill="none" stroke="#d97706" stroke-width="1"/></svg>Timer Intermediate</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="10" cy="10" r="5" fill="none" stroke="#2563eb" stroke-width="1"/></svg>Message Intermediate</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/></svg>End (Success)</div>
+  <div class="legend-item"><svg width="20" height="20"><polygon points="10,2 18,10 10,18 2,10" fill="white" stroke="#f59e0b" stroke-width="2"/></svg>Gateway (XOR)</div>
+  <div class="legend-item"><svg width="30" height="20"><line x1="0" y1="10" x2="24" y2="10" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4 2"/><circle cx="0" cy="10" r="3" fill="#2563eb"/><circle cx="24" cy="10" r="3" fill="none" stroke="#2563eb" stroke-width="1.5"/></svg>Message Flow</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- DIAGRAM 3: SHAS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="diagram-container" id="d2">
+<div class="bpmn-wrap">
+<svg width="1000" height="720" viewBox="0 0 1000 720" style="min-width:850px">
+<defs>
+  <marker id="c1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+  <marker id="cm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1L9 5L1 9" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/>
+  </marker>
+</defs>
+
+<!-- Pool -->
+<rect x="5" y="5" width="990" height="710" rx="8" fill="none" stroke="#334155" stroke-width="2"/>
+<rect x="5" y="5" width="44" height="710" rx="8" fill="#1e293b"/>
+<text x="27" y="360" text-anchor="middle" transform="rotate(-90,27,360)" font-size="12" font-weight="bold" fill="white" font-family="Segoe UI">SHAS — Automated Routine Setup Process</text>
+
+<!-- LANE 1: USER -->
+<rect x="49" y="5" width="941" height="215" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="5" width="46" height="215" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="112" text-anchor="middle" transform="rotate(-90,72,112)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">User (Mobile App)</text>
+
+<!-- START -->
+<circle cx="120" cy="112" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="120" y="138" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Open App</text>
+<line x1="135" y1="112" x2="162" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- TASK: Login -->
+<rect x="162" y="84" width="95" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="209" y="107" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Login &amp;</text>
+<text x="209" y="123" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Authenticate</text>
+<line x1="257" y1="112" x2="285" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- TASK: Navigate -->
+<rect x="285" y="84" width="105" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="337" y="107" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Go to Routine</text>
+<text x="337" y="123" text-anchor="middle" font-size="10" fill="#1e40af" font-family="Segoe UI">Section</text>
+<line x1="390" y1="112" x2="420" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- GW: Trigger type? -->
+<polygon points="440,92 462,112 440,132 418,112" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="440" y="116" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="440" y="146" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Trigger?</text>
+
+<!-- Time path -->
+<line x1="462" y1="112" x2="520" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="492" y="105" text-anchor="middle" font-size="9" fill="#555" font-family="Segoe UI">Time</text>
+<rect x="520" y="84" width="100" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="570" y="107" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Set Time</text>
+<text x="570" y="123" text-anchor="middle" font-size="9" fill="#1e40af" font-family="Segoe UI">(e.g. 8:00 PM)</text>
+
+<!-- Sensor path -->
+<path d="M440 132 L440 175 L570 175" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="505" y="168" text-anchor="middle" font-size="9" fill="#555" font-family="Segoe UI">Sensor</text>
+<rect x="570" y="148" width="100" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="620" y="171" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Set Threshold</text>
+<text x="620" y="187" text-anchor="middle" font-size="9" fill="#1e40af" font-family="Segoe UI">(e.g. temp&gt;30)</text>
+
+<!-- Merge paths → choose action -->
+<line x1="620" y1="112" x2="680" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<line x1="670" y1="176" x2="700" y2="176" stroke="#555" stroke-width="1.5"/>
+<line x1="700" y1="112" x2="700" y2="176" stroke="#555" stroke-width="1.5"/>
+
+<rect x="700" y="84" width="108" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="754" y="107" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af" font-family="Segoe UI">Choose Action</text>
+<text x="754" y="123" text-anchor="middle" font-size="9" fill="#1e40af" font-family="Segoe UI">(light/thermostat)</text>
+<line x1="808" y1="112" x2="840" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- MSG SEND routine -->
+<circle cx="857" cy="112" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="857" cy="112" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="851" y="107" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="851" y1="107" x2="857" y2="112" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="863" y1="107" x2="857" y2="112" stroke="#2563eb" stroke-width="0.8"/>
+<text x="857" y="138" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send to Hub</text>
+
+<!-- TIMER WAIT -->
+<circle cx="857" cy="175" r="14" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<circle cx="857" cy="175" r="9" fill="none" stroke="#d97706" stroke-width="1"/>
+<line x1="857" y1="168" x2="857" y2="175" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="857" y1="175" x2="863" y2="179" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="857" y1="126" x2="857" y2="161" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="857" y="201" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Wait Confirm</text>
+
+<!-- MSG RECEIVE confirm -->
+<circle cx="780" cy="175" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="780" cy="175" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="774" y="170" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<line x1="843" y1="175" x2="794" y2="175" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="780" y="201" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Confirm</text>
+
+<!-- GW: Success? -->
+<line x1="766" y1="175" x2="730" y2="175" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<polygon points="710,155 732,175 710,195 688,175" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="710" y="179" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<!-- YES end -->
+<line x1="688" y1="175" x2="650" y2="175" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="669" y="168" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">Yes</text>
+<circle cx="635" cy="175" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="635" y="200" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Routine Active ✓</text>
+<!-- NO retry -->
+<path d="M710 195 L710 210 L440 210 L440 132" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#c1)"/>
+<text x="575" y="218" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">No → Retry</text>
+
+<!-- LANE 2: CENTRAL HUB -->
+<rect x="49" y="220" width="941" height="220" fill="#fafafa" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="220" width="46" height="220" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="330" text-anchor="middle" transform="rotate(-90,72,330)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Central Hub</text>
+
+<!-- MSG FLOW: User → Hub -->
+<line x1="857" y1="126" x2="857" y2="248" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#cm)"/>
+<circle cx="857" cy="126" r="4" fill="#2563eb"/>
+<circle cx="857" cy="248" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE -->
+<circle cx="857" cy="264" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="857" cy="264" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="851" y="259" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="857" y="290" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Routine</text>
+<line x1="843" y1="264" x2="800" y2="264" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- TASK: Validate -->
+<rect x="690" y="236" width="108" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="744" y="259" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Validate</text>
+<text x="744" y="275" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">Routine Logic</text>
+<line x1="690" y1="264" x2="654" y2="264" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- GW: Valid? -->
+<polygon points="634,244 656,264 634,284 612,264" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="634" y="268" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="634" y="298" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Valid?</text>
+
+<!-- YES → store -->
+<line x1="612" y1="264" x2="560" y2="264" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="586" y="257" text-anchor="middle" font-size="10" fill="#16a34a" font-family="Segoe UI">Yes</text>
+<rect x="450" y="236" width="108" height="56" rx="6" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="504" y="259" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8" font-family="Segoe UI">Store &amp; Monitor</text>
+<text x="504" y="275" text-anchor="middle" font-size="10" fill="#6b21a8" font-family="Segoe UI">Trigger</text>
+
+<!-- TIMER check -->
+<circle cx="400" cy="264" r="14" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<circle cx="400" cy="264" r="9" fill="none" stroke="#d97706" stroke-width="1"/>
+<line x1="400" y1="257" x2="400" y2="264" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="400" y1="264" x2="406" y2="268" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="450" y1="264" x2="414" y2="264" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="400" y="290" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Check Trigger</text>
+
+<!-- GW: Triggered? -->
+<line x1="386" y1="264" x2="350" y2="264" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<polygon points="330,244 352,264 330,284 308,264" fill="white" stroke="#f59e0b" stroke-width="2"/>
+<text x="330" y="268" text-anchor="middle" font-size="10" fill="#b45309" font-weight="bold" font-family="Segoe UI">X</text>
+<text x="330" y="298" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Triggered?</text>
+
+<!-- YES → send execute -->
+<line x1="308" y1="264" x2="260" y2="264" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+<text x="284" y="257" text-anchor="middle" font-size="10" fill="#dc2626" font-family="Segoe UI">Yes</text>
+<circle cx="244" cy="264" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="244" cy="264" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="238" y="259" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="238" y1="259" x2="244" y2="264" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="250" y1="259" x2="244" y2="264" stroke="#2563eb" stroke-width="0.8"/>
+<text x="244" y="290" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Execute Cmd</text>
+
+<!-- NO → Confirm send back to user -->
+<path d="M634 284 L634 420 L780 420" fill="none" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#cm)"/>
+<text x="707" y="413" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Confirm → User</text>
+<circle cx="634" cy="284" r="4" fill="#2563eb"/>
+<circle cx="780" cy="420" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG FLOW to User (confirm) -->
+<line x1="780" y1="420" x2="780" y2="189" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#cm)"/>
+
+<!-- LANE 3: DEVICE/SENSOR -->
+<rect x="49" y="440" width="941" height="265" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="49" y="440" width="46" height="265" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="72" y="572" text-anchor="middle" transform="rotate(-90,72,572)" font-size="11" font-weight="600" fill="#334155" font-family="Segoe UI">Device / Sensor</text>
+
+<!-- MSG FLOW: Hub → Device -->
+<line x1="244" y1="278" x2="244" y2="468" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#cm)"/>
+<circle cx="244" cy="278" r="4" fill="#2563eb"/>
+<circle cx="244" cy="468" r="4" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+<!-- MSG RECEIVE execute -->
+<circle cx="244" cy="484" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="244" cy="484" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="238" y="479" width="12" height="8" rx="1" fill="#2563eb" stroke="#2563eb"/>
+<text x="244" y="510" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Receive Command</text>
+<line x1="258" y1="484" x2="300" y2="484" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- TASK: Execute action -->
+<rect x="300" y="456" width="118" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="359" y="479" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Execute Action</text>
+<text x="359" y="495" text-anchor="middle" font-size="9" fill="#9a3412" font-family="Segoe UI">(Turn on light etc.)</text>
+<line x1="418" y1="484" x2="460" y2="484" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- TASK: Report status -->
+<rect x="460" y="456" width="108" height="56" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+<text x="514" y="479" text-anchor="middle" font-size="10" font-weight="600" fill="#9a3412" font-family="Segoe UI">Report</text>
+<text x="514" y="495" text-anchor="middle" font-size="10" fill="#9a3412" font-family="Segoe UI">Status</text>
+<line x1="568" y1="484" x2="605" y2="484" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- MSG SEND status back -->
+<circle cx="622" cy="484" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="622" cy="484" r="9" fill="none" stroke="#2563eb" stroke-width="1"/>
+<rect x="616" y="479" width="12" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="1"/>
+<line x1="616" y1="479" x2="622" y2="484" stroke="#2563eb" stroke-width="0.8"/>
+<line x1="628" y1="479" x2="622" y2="484" stroke="#2563eb" stroke-width="0.8"/>
+<text x="622" y="510" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Send Status to Hub</text>
+<line x1="636" y1="484" x2="680" y2="484" stroke="#555" stroke-width="1.5" marker-end="url(#c1)"/>
+
+<!-- END -->
+<circle cx="695" cy="484" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<text x="695" y="510" text-anchor="middle" font-size="10" fill="#555" font-family="Segoe UI">Action Done ✓</text>
+
+</svg>
+</div>
+<div class="legend">
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/></svg>Start Event</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><circle cx="10" cy="10" r="5" fill="none" stroke="#d97706" stroke-width="1"/></svg>Timer Intermediate</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="10" cy="10" r="5" fill="none" stroke="#2563eb" stroke-width="1"/></svg>Message Intermediate</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/></svg>End (Success)</div>
+  <div class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/></svg>End (Error)</div>
+  <div class="legend-item"><svg width="20" height="20"><polygon points="10,2 18,10 10,18 2,10" fill="white" stroke="#f59e0b" stroke-width="2"/></svg>Gateway (XOR)</div>
+  <div class="legend-item"><svg width="30" height="20"><line x1="0" y1="10" x2="24" y2="10" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4 2"/><circle cx="0" cy="10" r="3" fill="#2563eb"/><circle cx="24" cy="10" r="3" fill="none" stroke="#2563eb" stroke-width="1.5"/></svg>Message Flow</div>
+</div>
+</div>
+
+<script>
+function show(n) {
+  document.querySelectorAll('.diagram-container').forEach((d,i) => {
+    d.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', i === n);
+  });
+}
+</script>
+</body>
+</html>
