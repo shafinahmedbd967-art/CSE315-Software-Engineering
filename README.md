@@ -14,7 +14,7 @@ This repository includes:
 - 📄 PDF Resources  
 - 📊 Presentation Slides  
 - 📌 Assignments  
-- 📁 Project Files (if any)  
+- 📁 Project Files  
 
 ---
 
